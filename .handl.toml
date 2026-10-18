@@ -1,0 +1,5 @@
+[dependencies]
+tls = { path = "../lib-tls/src" }
+
+# own package
+tls-libssl = { path = "src" }
