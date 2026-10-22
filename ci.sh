@@ -4,9 +4,11 @@
 set -euo pipefail
 
 # Skeleton repos have the layout but no implementation yet — a skipped gate is
-# honest; a failing one would just be noise.
-if ! find src -name '*.hnl' 2>/dev/null | grep -q .; then
-  echo "no .hnl sources under src/ yet - gate skipped"
+# honest; a failing one would just be noise. A committed specs/ dir means the
+# gate has generated output to regen + cover even when src/ holds no .hnl.
+if ! find src -name '*.hnl' 2>/dev/null | grep -q . && \
+   ! find specs -type f 2>/dev/null | grep -q .; then
+  echo "no .hnl sources under src/ and no specs/ - gate skipped"
   exit 0
 fi
 
