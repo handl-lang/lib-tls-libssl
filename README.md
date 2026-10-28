@@ -34,3 +34,7 @@ HNL=../host-cli/target/debug/hnl scripts/hnl-gate.sh
 
 The gate regenerates `handl-packages/generated/` from `specs/` first, then
 typechecks/lints/tests whatever `.hnl` sources exist.
+
+## License
+
+MIT.
