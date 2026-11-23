@@ -1,7 +1,7 @@
 # lib-tls-libssl
 
 Nonblocking TLS primitives over libssl — step functions a scheduler can park
-on. The libssl bindings are sdkgen-generated and emitted under
+on. The libssl bindings are codegen-generated and emitted under
 `handl-packages/generated/` (a gitignored build artifact).
 
 ## Layout
@@ -18,7 +18,7 @@ ci.sh       bupha entry
 ## Regenerate
 
 ```bash
-hnl sdkgen c /usr/include/openssl/ssl.h \
+hnl codegen c /usr/include/openssl/ssl.h \
   --output handl-packages/generated/libssl \
   --config specs/libssl.sdkgen.yaml
 ```

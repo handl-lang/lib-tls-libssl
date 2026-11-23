@@ -37,9 +37,9 @@ resolve_header() {
 # loader cannot find it); a missing system header skips that module's
 # regen with a warning rather than failing the whole gate.
 if [ -f "$SPEC_DIR/libssl.sdkgen.yaml" ]; then
-  echo "== hnl sdkgen c ssl.h --output $GEN_DIR/libssl =="
+  echo "== hnl codegen c ssl.h --output $GEN_DIR/libssl =="
   if h=$(resolve_header openssl/ssl.h); then
-    "$HNL" sdkgen c "$h" --output "$GEN_DIR/libssl" --config "$SPEC_DIR/libssl.sdkgen.yaml"
+    "$HNL" codegen c "$h" --output "$GEN_DIR/libssl" --config "$SPEC_DIR/libssl.sdkgen.yaml"
   else
     echo "   warning: openssl/ssl.h not found — skipping libssl regen (install openssl headers)" >&2
   fi
