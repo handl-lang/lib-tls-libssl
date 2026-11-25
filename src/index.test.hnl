@@ -1,0 +1,25 @@
+--- tls-libssl -- smoke tests over the libssl ffi backend.
+---
+--- Exercises the pure surface that does not need a handshake: the
+--- exported step arrows exist, and `ctx_client`/`ctx_free` round-trip
+--- a real `SSL_CTX*` through `libssl.so.3`. Handshake/read/write steps
+--- need a live socket pair — out of scope for a unit suite.
+
+from "./index" import * as m
+
+test_exports := assert m.ctx_client != null && m.ctx_server != null
+  && m.wrap_client != null && m.wrap_server != null
+  && m.handshake_step != null && m.read_step != null
+  && m.write_step != null && m.close != null
+  && m.free != null && m.ctx_free != null
+
+test_ctx_client := do {
+  ctx := m.ctx_client(null)
+  assert ctx != 0
+}
+
+test_ctx_free := do {
+  ctx := m.ctx_client(null)
+  m.ctx_free(ctx)
+  assert true
+}
